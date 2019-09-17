@@ -9,7 +9,28 @@ canvas.width = width;
 canvas.height = height;
 
 let blueCs = 0;
+let mouse = new Vector2d(0,0);
+let points = [];
+for(let i = 0; i<10;i++){
+  let  point = new Point(new Vector2d(getRandom(width),getRandom(height)), 20, 255,0,0);
+  //point.draw(context);
+  points.push(point);
+}
+function animate(){
+  window.requestAnimationFrame(animate);
+  for(let i = 0; i<points.length;i++){
+    points[i].draw(context);
+  }
+  if(blueCs>=10){
+    window.location.reload();
+  }
+}
+//point.draw(context);
+function getRandom(max) {
+  return Math.floor((Math.random() * max) + 1);
 
+}
+/*
 let point = new Point(new Vector2d(Math.floor((Math.random() * window.innerWidth) + 1),Math.floor((Math.random() * window.innerHeight) + 1)),50,255,0,0)
 let point2 = new Point(new Vector2d(Math.floor((Math.random() * window.innerWidth) + 1),Math.floor((Math.random() * window.innerHeight) + 1)),50,255,0,0)
 let point3 = new Point(new Vector2d(Math.floor((Math.random() * window.innerWidth) + 1),Math.floor((Math.random() * window.innerHeight) + 1)),50,255,0,0)
@@ -17,7 +38,7 @@ let point4 = new Point(new Vector2d(Math.floor((Math.random() * window.innerWidt
 let mouseVector = new Vector2d(0,0);
 let d = new Vector2d(0,0);
 d.differenceVector(point.position,mouseVector);
-/*
+
 window.addEventListener('click',(evt)=>{
   mouseVector.dx = evt.clientX;
   mouseVector.dy = evt.clientY;
@@ -90,7 +111,6 @@ window.addEventListener('click',(evt)=>{
     }
 
 })
-*/
 console.log(blueCs);
 if(blueCs == 4){
   console.log("hoi");
@@ -103,3 +123,21 @@ point2.draw(context);
 point3.draw(context);
 point4.draw(context);
 console.log(mouseVector);
+*/
+//window.requestAnimationFrame(animate);
+window.addEventListener("click",(evt)=>{
+  mouse.dx = evt.clientX;
+  mouse.dy = evt.clientY;
+  for(let i = 0; i<points.length;i++){
+    let dif = new Vector2d(0,0);
+    dif.differenceVector(mouse,points[i].position)
+    console.log(dif.magnitude);
+    if((dif.magnitude<points[i].size)&&(points[i].r==255)){
+      points[i].r = 0;
+      points[i].b = 255;
+      blueCs++;
+    }
+
+  }
+});
+animate();
