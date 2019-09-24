@@ -17,11 +17,11 @@ for(let i = 0; i<4;i++){
 }
 function animate(){
   window.requestAnimationFrame(animate);
+  context.clearRect(0,0,width,height);
   points[0].draw(context);
+
 }
 function getRandom(max) {
   return Math.floor((Math.random() * max) + 1);
 }
-window.addEventListener("click",(evt)=>{
-});
 animate();
