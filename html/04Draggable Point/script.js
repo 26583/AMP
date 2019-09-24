@@ -12,7 +12,7 @@ let blueCs = 0;
 let mouse = new Vector2d(0,0);
 let points = [];
 for(let i = 0; i<4;i++){
-  let  point = new Point(new Vector2d(getRandom(width),getRandom(height)), 20, 255,0,0);
+  let  point = new Point(new Vector2d(getRandom(width),getRandom(height)), 20, 255,0,0,true);
   points.push(point);
 }
 function animate(){
