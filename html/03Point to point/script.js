@@ -33,6 +33,5 @@ function animate(){
 function getRandom(max) {
   return Math.floor((Math.random() * max) + 1);
 }
-window.addEventListener("click",(evt)=>{
-});
+
 animate();
